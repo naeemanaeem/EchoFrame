@@ -1,7 +1,5 @@
 import os
 import io
-import sounddevice as sd
-import soundfile as sf
 from pathlib import Path
 from fastapi import FastAPI, Request, Form, Response
 from starlette.responses import PlainTextResponse
@@ -18,6 +16,7 @@ import requests
 from pydub import AudioSegment
 from groq import Groq
 from fastapi import Body
+import json
 
 
 
@@ -34,6 +33,8 @@ if not GROQ_API_KEY:
 MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
 TAVUS_API_KEY = os.getenv("TAVUS_API_KEY")
 TAVUS_API_URL = "https://tavusapi.com/v2/conversations"
+PERSONA_ID = os.getenv("PERSONA_ID")
+REPLICA_ID = os.getenv("REPLICA_ID")
 
 # FastAPI app setup
 app = FastAPI()
@@ -109,40 +110,72 @@ def translate(req: TranslationRequest):
 
     return {"translations": translations}
 
+
 @app.post("/start-conversation")
 def start_conversation(request: ConversationRequest):
-    payload = {
-        "replica_id": "r6ae5b6efc9d",
-        "persona_id": "p1d6a2085bce",
-        "callback_url": "https://yourwebsite.com/webhook",
-        "conversation_name": "A Conversation with " + request.person,
-        "conversational_context": (
-            "You are about to talk to" +  request.person + ", one of the cofounders of Tavus. "
-            "He loves to talk about AI, startups, and racing cars."
-        ),
-        "custom_greeting": "Hey there " + request.person + ", long time no see!",
-        "properties": {
-            "max_call_duration": 3600,
-            "participant_left_timeout": 60,
-            "participant_absent_timeout": 300,
-            "enable_recording": False,
-            "enable_closed_captions": True,
-            "apply_greenscreen": True,
-            "language": request.language
+    # Check for Tavus API key
+    if not TAVUS_API_KEY:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Tavus API key not configured. Please check your environment variables."}
+        )
+
+    try:
+        with open("data/outputs/final.json", "r", encoding="utf-8") as f:
+            json_data = json.load(f)
+        json_str = json.dumps(json_data, indent=2)
+        
+        payload = {
+            "replica_id": REPLICA_ID,
+            "persona_id": PERSONA_ID,
+            "callback_url": "https://yourwebsite.com/webhook",
+            "conversation_name": "A Conversation with " + request.person,
+            'conversational_context': f"This is the metadata for all the videos:\n\n{json_str}",
+            "custom_greeting": "Hey there " + request.person + ", long time no see!",
+            "properties": {
+                "max_call_duration": 3600,
+                "participant_left_timeout": 60,
+                "participant_absent_timeout": 300,
+                "enable_recording": False,
+                "enable_closed_captions": True,
+                "apply_greenscreen": True,
+                "language": request.language
+            }
         }
-    }
 
-    headers = {
-        "Content-Type": "application/json",
-        "x-api-key": TAVUS_API_KEY
-    }
+        headers = {
+            "Content-Type": "application/json",
+            "x-api-key": TAVUS_API_KEY
+        }
 
-    response = requests.post(TAVUS_API_URL, json=payload, headers=headers)
+        response = requests.post(TAVUS_API_URL, json=payload, headers=headers)
 
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return {"error": response.status_code, "message": response.text}
+        if response.status_code == 200:
+            return response.json()
+        else:
+            error_text = response.text
+            if "replica has not been upgraded to enable streaming" in error_text:
+                error_message = "This feature requires a Tavus streaming-enabled replica. Please contact support to upgrade or create a new replica with streaming enabled."
+            else:
+                error_message = f"Tavus API error: {error_text}"
+            
+            print(f"Error from Tavus API: Status {response.status_code}, Message: {error_text}")  # Debug log
+            return JSONResponse(
+                status_code=400,
+                content={"error": error_message}
+            )
+            
+    except FileNotFoundError:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Video metadata file not found. Please ensure you've processed some videos first."}
+        )
+    except Exception as e:
+        print(f"Unexpected error in start_conversation: {str(e)}")  # Debug log
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Server error: {str(e)}"}
+        )
 
 @app.post("/generate-podcast")
 def generate_podcast():
@@ -257,30 +290,111 @@ def run_translation():
 
 @app.post("/generate-speech")
 def generate_speech():
-    # Initialize the Groq client
-    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-    # Read the podcast text
-    with open('podcasts/full_podcast.txt', 'r') as file:
-        podcast_text = file.read()
     try:
-        # Generate speech with Groq API
-        response = client.audio.speech.create(
-            model="playai-tts",
-            voice="Fritz-PlayAI",
-            input=podcast_text,
-            response_format="wav"
-        )
+        # Check for API key
+        if not GROQ_API_KEY:
+            return JSONResponse(
+                status_code=500,
+                content={"error": "GROQ_API_KEY not configured"}
+            )
 
-        # Load binary audio data into memory
-        audio_bytes = io.BytesIO(response.read())
+        # Read podcast text
+        try:
+            with open('podcasts/full_podcast.txt', 'r', encoding='utf-8') as file:
+                podcast_text = file.read()
+                if not podcast_text.strip():
+                    return JSONResponse(
+                        status_code=400,
+                        content={"error": "Podcast text is empty"}
+                    )
+        except FileNotFoundError:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "Podcast text file not found"}
+            )
 
-        # Return as audio/wav stream
-        return StreamingResponse(audio_bytes, media_type="audio/wav", headers={
-            "Content-Disposition": "inline; filename=speech.wav"
-        })
+        # Split text into chunks of 9000 characters (leaving some buffer)
+        # Try to split at sentence boundaries
+        def split_into_chunks(text, max_length=9000):
+            chunks = []
+            current_chunk = ""
+            sentences = text.split('. ')
+            
+            for sentence in sentences:
+                if len(current_chunk) + len(sentence) + 2 <= max_length:  # +2 for '. '
+                    current_chunk += sentence + '. '
+                else:
+                    chunks.append(current_chunk.strip())
+                    current_chunk = sentence + '. '
+            
+            if current_chunk:
+                chunks.append(current_chunk.strip())
+            return chunks
+
+        text_chunks = split_into_chunks(podcast_text)
+
+        # Generate speech for each chunk
+        try:
+            headers = {
+                "Authorization": f"Bearer {GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
+            
+            # Store audio chunks
+            audio_chunks = []
+            
+            for chunk in text_chunks:
+                response = requests.post(
+                    "https://api.groq.com/openai/v1/audio/speech",
+                    headers=headers,
+                    json={
+                        "model": "playai-tts",
+                        "input": chunk,
+                        "voice": "Fritz-PlayAI",
+                        "response_format": "wav"
+                    }
+                )
+
+                if not response.ok:
+                    return JSONResponse(
+                        status_code=response.status_code,
+                        content={"error": f"Groq API error: {response.text}"}
+                    )
+                
+                audio_chunks.append(io.BytesIO(response.content))
+
+            # Combine audio chunks using pydub
+            from pydub import AudioSegment
+            
+            combined = AudioSegment.empty()
+            for chunk in audio_chunks:
+                chunk.seek(0)
+                segment = AudioSegment.from_wav(chunk)
+                combined += segment
+
+            # Convert combined audio to bytes
+            output = io.BytesIO()
+            combined.export(output, format="wav")
+            output.seek(0)
+
+            # Return the combined audio
+            return Response(
+                content=output.read(),
+                media_type="audio/wav",
+                headers={"Content-Disposition": "attachment; filename=podcast.wav"}
+            )
+
+        except Exception as e:
+            return JSONResponse(
+                status_code=500,
+                content={"error": f"Failed to generate speech: {str(e)}"}
+            )
 
     except Exception as e:
-        return Response(content=f"Error generating speech: {str(e)}", status_code=500)
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Unexpected error: {str(e)}"}
+        )
     
 @app.get("/podcast-text", response_class=PlainTextResponse)
 async def get_podcast_text():

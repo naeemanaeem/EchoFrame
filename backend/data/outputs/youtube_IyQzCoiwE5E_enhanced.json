@@ -1,0 +1,1748 @@
+{
+  "video_id": "IyQzCoiwE5E",
+  "url": "https://www.youtube.com/watch?v=IyQzCoiwE5E",
+  "transcription": [
+    {
+      "start_time": "00:00:00",
+      "end_time": "00:00:06",
+      "text": "hi welcome to donkey Tech in this video"
+    },
+    {
+      "start_time": "00:00:03",
+      "end_time": "00:00:09",
+      "text": "I am going to show you how you can"
+    },
+    {
+      "start_time": "00:00:06",
+      "end_time": "00:00:11",
+      "text": "interface with a dht22 aperture and"
+    },
+    {
+      "start_time": "00:00:09",
+      "end_time": "00:00:14",
+      "text": "humidity sensor with your Raspberry Pi"
+    },
+    {
+      "start_time": "00:00:11",
+      "end_time": "00:00:17",
+      "text": "we will use Python programming language"
+    },
+    {
+      "start_time": "00:00:14",
+      "end_time": "00:00:21",
+      "text": "in doing the code for this project so I"
+    },
+    {
+      "start_time": "00:00:17",
+      "end_time": "00:00:25",
+      "text": "have here my dht22 sensor module and my"
+    },
+    {
+      "start_time": "00:00:21",
+      "end_time": "00:00:27",
+      "text": "Raspberry Pi's p0w together with the"
+    },
+    {
+      "start_time": "00:00:25",
+      "end_time": "00:00:31",
+      "text": "breakout board and some connecting wires"
+    },
+    {
+      "start_time": "00:00:27",
+      "end_time": "00:00:35",
+      "text": "what I'm going to show you is that I'll"
+    },
+    {
+      "start_time": "00:00:31",
+      "end_time": "00:00:38",
+      "text": "be using the DHT 22 sensor module which"
+    },
+    {
+      "start_time": "00:00:35",
+      "end_time": "00:00:41",
+      "text": "already contains the pull up resistor"
+    },
+    {
+      "start_time": "00:00:38",
+      "end_time": "00:00:43",
+      "text": "and some filter capacitor but that there"
+    },
+    {
+      "start_time": "00:00:41",
+      "end_time": "00:00:46",
+      "text": "there will be no need for us to connect"
+    },
+    {
+      "start_time": "00:00:43",
+      "end_time": "00:00:51",
+      "text": "in external component in connecting with"
+    },
+    {
+      "start_time": "00:00:46",
+      "end_time": "00:00:54",
+      "text": "our Niche t22 module so the dht-22"
+    },
+    {
+      "start_time": "00:00:51",
+      "end_time": "00:00:57",
+      "text": "module outputs the temperature and the"
+    },
+    {
+      "start_time": "00:00:54",
+      "end_time": "00:01:00",
+      "text": "humidity in a single data line and it"
+    },
+    {
+      "start_time": "00:00:57",
+      "end_time": "00:01:03",
+      "text": "only has three pins one is for the power"
+    },
+    {
+      "start_time": "00:01:00",
+      "end_time": "00:01:06",
+      "text": "in for the ground and BCC and the other"
+    },
+    {
+      "start_time": "00:01:03",
+      "end_time": "00:01:09",
+      "text": "pin is the data line which is the data"
+    },
+    {
+      "start_time": "00:01:06",
+      "end_time": "00:01:12",
+      "text": "line where in the temperature and the"
+    },
+    {
+      "start_time": "00:01:09",
+      "end_time": "00:01:14",
+      "text": "humidity goes out for the wiring and"
+    },
+    {
+      "start_time": "00:01:12",
+      "end_time": "00:01:17",
+      "text": "schematic all you need to do is just to"
+    },
+    {
+      "start_time": "00:01:14",
+      "end_time": "00:01:22",
+      "text": "connect the three pins of your"
+    },
+    {
+      "start_time": "00:01:17",
+      "end_time": "00:01:24",
+      "text": "22 module and just connect the ground"
+    },
+    {
+      "start_time": "00:01:22",
+      "end_time": "00:01:27",
+      "text": "and the BCC pin to the ground and the"
+    },
+    {
+      "start_time": "00:01:24",
+      "end_time": "00:01:30",
+      "text": "3.3 volts of our Raspberry Pi zero and"
+    },
+    {
+      "start_time": "00:01:27",
+      "end_time": "00:01:33",
+      "text": "connect the data pin to the key of the"
+    },
+    {
+      "start_time": "00:01:30",
+      "end_time": "00:01:37",
+      "text": "digital pins of the grassland pipe I'm"
+    },
+    {
+      "start_time": "00:01:33",
+      "end_time": "00:01:39",
+      "text": "using the raspberry pi zero W here in my"
+    },
+    {
+      "start_time": "00:01:37",
+      "end_time": "00:01:41",
+      "text": "project but you can use any other"
+    },
+    {
+      "start_time": "00:01:39",
+      "end_time": "00:01:45",
+      "text": "Raspberry Pi variants such as the"
+    },
+    {
+      "start_time": "00:01:41",
+      "end_time": "00:01:47",
+      "text": "Raspberry Pi 4B or the images which is"
+    },
+    {
+      "start_time": "00:01:45",
+      "end_time": "00:01:52",
+      "text": "the Raspberry Pi zero two w"
+    },
+    {
+      "start_time": "00:01:47",
+      "end_time": "00:01:55",
+      "text": "so let's go now into the code so the"
+    },
+    {
+      "start_time": "00:01:52",
+      "end_time": "00:01:58",
+      "text": "code for this project by the way is"
+    },
+    {
+      "start_time": "00:01:55",
+      "end_time": "00:02:00",
+      "text": "available in my GitHub repository which"
+    },
+    {
+      "start_time": "00:01:58",
+      "end_time": "00:02:05",
+      "text": "I will post in the description of this"
+    },
+    {
+      "start_time": "00:02:00",
+      "end_time": "00:02:09",
+      "text": "video and the way to connect with the"
+    },
+    {
+      "start_time": "00:02:05",
+      "end_time": "00:02:11",
+      "text": "ht-22 sensor is by using the library so"
+    },
+    {
+      "start_time": "00:02:09",
+      "end_time": "00:02:14",
+      "text": "when you try to Google for the library"
+    },
+    {
+      "start_time": "00:02:11",
+      "end_time": "00:02:16",
+      "text": "that you can use when connecting with"
+    },
+    {
+      "start_time": "00:02:14",
+      "end_time": "00:02:20",
+      "text": "the Raspberry Pi there's actually two"
+    },
+    {
+      "start_time": "00:02:16",
+      "end_time": "00:02:25",
+      "text": "libraries that you would see one is the"
+    },
+    {
+      "start_time": "00:02:20",
+      "end_time": "00:02:27",
+      "text": "adapro circuit python DHT Library so by"
+    },
+    {
+      "start_time": "00:02:25",
+      "end_time": "00:02:29",
+      "text": "the way this is the latest project that"
+    },
+    {
+      "start_time": "00:02:27",
+      "end_time": "00:02:32",
+      "text": "we can use or the latest library that we"
+    },
+    {
+      "start_time": "00:02:29",
+      "end_time": "00:02:35",
+      "text": "can use and some of the sites when you"
+    },
+    {
+      "start_time": "00:02:32",
+      "end_time": "00:02:39",
+      "text": "Google you will find them using the old"
+    },
+    {
+      "start_time": "00:02:35",
+      "end_time": "00:02:42",
+      "text": "library which is the adapt python DHT"
+    },
+    {
+      "start_time": "00:02:39",
+      "end_time": "00:02:46",
+      "text": "the only problem with this library is"
+    },
+    {
+      "start_time": "00:02:42",
+      "end_time": "00:02:49",
+      "text": "that it is already deprecated so if ever"
+    },
+    {
+      "start_time": "00:02:46",
+      "end_time": "00:02:51",
+      "text": "there is some issues with your readings"
+    },
+    {
+      "start_time": "00:02:49",
+      "end_time": "00:02:54",
+      "text": "then it will be hard to use this Library"
+    },
+    {
+      "start_time": "00:02:51",
+      "end_time": "00:02:57",
+      "text": "since the support is already ended for"
+    },
+    {
+      "start_time": "00:02:54",
+      "end_time": "00:02:59",
+      "text": "this library but in our case in here I'm"
+    },
+    {
+      "start_time": "00:02:57",
+      "end_time": "00:03:02",
+      "text": "going to show you how you you can use"
+    },
+    {
+      "start_time": "00:02:59",
+      "end_time": "00:03:04",
+      "text": "bot libraries so that you can decide for"
+    },
+    {
+      "start_time": "00:03:02",
+      "end_time": "00:03:08",
+      "text": "yourself which libraries that you're"
+    },
+    {
+      "start_time": "00:03:04",
+      "end_time": "00:03:11",
+      "text": "going to use so the steps that I have"
+    },
+    {
+      "start_time": "00:03:08",
+      "end_time": "00:03:14",
+      "text": "outlined here in my companion write-up"
+    },
+    {
+      "start_time": "00:03:11",
+      "end_time": "00:03:18",
+      "text": "is already detailed so you just need to"
+    },
+    {
+      "start_time": "00:03:14",
+      "end_time": "00:03:20",
+      "text": "follow the steps in here and just take a"
+    },
+    {
+      "start_time": "00:03:18",
+      "end_time": "00:03:22",
+      "text": "look at how the library is being"
+    },
+    {
+      "start_time": "00:03:20",
+      "end_time": "00:03:25",
+      "text": "installed so I have here the two"
+    },
+    {
+      "start_time": "00:03:22",
+      "end_time": "00:03:28",
+      "text": "libraries which is the adapod circuit"
+    },
+    {
+      "start_time": "00:03:25",
+      "end_time": "00:03:32",
+      "text": "python DHT and the other one is the"
+    },
+    {
+      "start_time": "00:03:28",
+      "end_time": "00:03:35",
+      "text": "library called the adaproot DHT"
+    },
+    {
+      "start_time": "00:03:32",
+      "end_time": "00:03:37",
+      "text": "so the only concern that I have with the"
+    },
+    {
+      "start_time": "00:03:35",
+      "end_time": "00:03:40",
+      "text": "adapt circuit python is that the"
+    },
+    {
+      "start_time": "00:03:37",
+      "end_time": "00:03:43",
+      "text": "installation is a bit involved and you"
+    },
+    {
+      "start_time": "00:03:40",
+      "end_time": "00:03:46",
+      "text": "need to install the circuit python"
+    },
+    {
+      "start_time": "00:03:43",
+      "end_time": "00:03:48",
+      "text": "library for the adapload project if you"
+    },
+    {
+      "start_time": "00:03:46",
+      "end_time": "00:03:51",
+      "text": "are not familiar with the circuit python"
+    },
+    {
+      "start_time": "00:03:48",
+      "end_time": "00:03:54",
+      "text": "it's the micro python implementation of"
+    },
+    {
+      "start_time": "00:03:51",
+      "end_time": "00:03:57",
+      "text": "the adapload industries so once you have"
+    },
+    {
+      "start_time": "00:03:54",
+      "end_time": "00:04:00",
+      "text": "installed the library by following the"
+    },
+    {
+      "start_time": "00:03:57",
+      "end_time": "00:04:03",
+      "text": "steps in here then you can now start"
+    },
+    {
+      "start_time": "00:04:00",
+      "end_time": "00:04:07",
+      "text": "connecting with your Raspberry Pi so"
+    },
+    {
+      "start_time": "00:04:03",
+      "end_time": "00:04:10",
+      "text": "this is my project right now and if I"
+    },
+    {
+      "start_time": "00:04:07",
+      "end_time": "00:04:12",
+      "text": "try to list the project you will see"
+    },
+    {
+      "start_time": "00:04:10",
+      "end_time": "00:04:15",
+      "text": "that there is two file actually one is"
+    },
+    {
+      "start_time": "00:04:12",
+      "end_time": "00:04:19",
+      "text": "named new and the other one is name all"
+    },
+    {
+      "start_time": "00:04:15",
+      "end_time": "00:04:22",
+      "text": "so the new uh python file uses the new"
+    },
+    {
+      "start_time": "00:04:19",
+      "end_time": "00:04:24",
+      "text": "circuit python library and the old is"
+    },
+    {
+      "start_time": "00:04:22",
+      "end_time": "00:04:28",
+      "text": "using the deprecated Library which is"
+    },
+    {
+      "start_time": "00:04:24",
+      "end_time": "00:04:30",
+      "text": "the adaproot python DHT Library"
+    },
+    {
+      "start_time": "00:04:28",
+      "end_time": "00:04:32",
+      "text": "so but for now let's try to execute"
+    },
+    {
+      "start_time": "00:04:30",
+      "end_time": "00:04:35",
+      "text": "these two these two files so that we"
+    },
+    {
+      "start_time": "00:04:32",
+      "end_time": "00:04:39",
+      "text": "would know what the output is so to"
+    },
+    {
+      "start_time": "00:04:35",
+      "end_time": "00:04:43",
+      "text": "execute the project just click type the"
+    },
+    {
+      "start_time": "00:04:39",
+      "end_time": "00:04:43",
+      "text": "python and then the new"
+    },
+    {
+      "start_time": "00:04:43",
+      "end_time": "00:04:48",
+      "text": "and as you can see because able to"
+    },
+    {
+      "start_time": "00:04:46",
+      "end_time": "00:04:52",
+      "text": "retrieve the values of the temperature"
+    },
+    {
+      "start_time": "00:04:48",
+      "end_time": "00:04:55",
+      "text": "and the humidity when you see this"
+    },
+    {
+      "start_time": "00:04:52",
+      "end_time": "00:04:58",
+      "text": "message which is the pull buffer Let's"
+    },
+    {
+      "start_time": "00:04:55",
+      "end_time": "00:05:00",
+      "text": "ignore this one it just means that the"
+    },
+    {
+      "start_time": "00:04:58",
+      "end_time": "00:05:04",
+      "text": "library was not evil read the sensor"
+    },
+    {
+      "start_time": "00:05:00",
+      "end_time": "00:05:06",
+      "text": "reading so you can just continue with"
+    },
+    {
+      "start_time": "00:05:04",
+      "end_time": "00:05:08",
+      "text": "the code and as you can see the"
+    },
+    {
+      "start_time": "00:05:06",
+      "end_time": "00:05:11",
+      "text": "temperature and humidity is being"
+    },
+    {
+      "start_time": "00:05:08",
+      "end_time": "00:05:15",
+      "text": "returned if we try to hold the sensor"
+    },
+    {
+      "start_time": "00:05:11",
+      "end_time": "00:05:18",
+      "text": "then you would see that the humidity"
+    },
+    {
+      "start_time": "00:05:15",
+      "end_time": "00:05:21",
+      "text": "started going up right now so which"
+    },
+    {
+      "start_time": "00:05:18",
+      "end_time": "00:05:23",
+      "text": "means that the sensor was able to detect"
+    },
+    {
+      "start_time": "00:05:21",
+      "end_time": "00:05:27",
+      "text": "the change in the humidity"
+    },
+    {
+      "start_time": "00:05:23",
+      "end_time": "00:05:31",
+      "text": "so that's all for the using the new DHT"
+    },
+    {
+      "start_time": "00:05:27",
+      "end_time": "00:05:34",
+      "text": "simple so if we check what the code is"
+    },
+    {
+      "start_time": "00:05:31",
+      "end_time": "00:05:36",
+      "text": "for this new the HD simple is it's"
+    },
+    {
+      "start_time": "00:05:34",
+      "end_time": "00:05:38",
+      "text": "actually just really simple"
+    },
+    {
+      "start_time": "00:05:36",
+      "end_time": "00:05:42",
+      "text": "what you need to do is just to import"
+    },
+    {
+      "start_time": "00:05:38",
+      "end_time": "00:05:45",
+      "text": "the necessary packages or library and"
+    },
+    {
+      "start_time": "00:05:42",
+      "end_time": "00:05:48",
+      "text": "then just create the DHT device which is"
+    },
+    {
+      "start_time": "00:05:45",
+      "end_time": "00:05:52",
+      "text": "the dhc22 by the way this library is"
+    },
+    {
+      "start_time": "00:05:48",
+      "end_time": "00:05:55",
+      "text": "applicable also for any DHT 11 variant"
+    },
+    {
+      "start_time": "00:05:52",
+      "end_time": "00:05:58",
+      "text": "also so we just need to pass in the"
+    },
+    {
+      "start_time": "00:05:55",
+      "end_time": "00:06:02",
+      "text": "board number or the gpio pin number"
+    },
+    {
+      "start_time": "00:05:58",
+      "end_time": "00:06:06",
+      "text": "which is in my case is gpio 18."
+    },
+    {
+      "start_time": "00:06:02",
+      "end_time": "00:06:09",
+      "text": "and it just continually loops and after"
+    },
+    {
+      "start_time": "00:06:06",
+      "end_time": "00:06:11",
+      "text": "looping it just reads the temperature by"
+    },
+    {
+      "start_time": "00:06:09",
+      "end_time": "00:06:14",
+      "text": "passing in by calling the DHT device"
+    },
+    {
+      "start_time": "00:06:11",
+      "end_time": "00:06:16",
+      "text": "that temperature and there is just some"
+    },
+    {
+      "start_time": "00:06:14",
+      "end_time": "00:06:19",
+      "text": "conversion between the cell tell shoes"
+    },
+    {
+      "start_time": "00:06:16",
+      "end_time": "00:06:22",
+      "text": "and the parent height and the humidity"
+    },
+    {
+      "start_time": "00:06:19",
+      "end_time": "00:06:24",
+      "text": "is just being called by calling the DHT"
+    },
+    {
+      "start_time": "00:06:22",
+      "end_time": "00:06:27",
+      "text": "device that immediately the error that"
+    },
+    {
+      "start_time": "00:06:24",
+      "end_time": "00:06:29",
+      "text": "you have seen earlier was passed by some"
+    },
+    {
+      "start_time": "00:06:27",
+      "end_time": "00:06:32",
+      "text": "runtime error here so it just prints the"
+    },
+    {
+      "start_time": "00:06:29",
+      "end_time": "00:06:36",
+      "text": "error and then let's continue with the"
+    },
+    {
+      "start_time": "00:06:32",
+      "end_time": "00:06:38",
+      "text": "looping so as per the DHT Library the"
+    },
+    {
+      "start_time": "00:06:36",
+      "end_time": "00:06:41",
+      "text": "errors happens fairly often because it's"
+    },
+    {
+      "start_time": "00:06:38",
+      "end_time": "00:06:43",
+      "text": "hard to read this answer so just ignore"
+    },
+    {
+      "start_time": "00:06:41",
+      "end_time": "00:06:46",
+      "text": "it and just continue with the code so"
+    },
+    {
+      "start_time": "00:06:43",
+      "end_time": "00:06:48",
+      "text": "that's is that's all for how you can"
+    },
+    {
+      "start_time": "00:06:46",
+      "end_time": "00:06:51",
+      "text": "read the"
+    },
+    {
+      "start_time": "00:06:48",
+      "end_time": "00:06:55",
+      "text": "they see 22 sensor using this Library"
+    },
+    {
+      "start_time": "00:06:51",
+      "end_time": "00:06:57",
+      "text": "next I'm going to show you the old"
+    },
+    {
+      "start_time": "00:06:55",
+      "end_time": "00:07:00",
+      "text": "Library which is the this one so let's"
+    },
+    {
+      "start_time": "00:06:57",
+      "end_time": "00:07:03",
+      "text": "try running it first by planning python"
+    },
+    {
+      "start_time": "00:07:00",
+      "end_time": "00:07:03",
+      "text": "all"
+    },
+    {
+      "start_time": "00:07:03",
+      "end_time": "00:07:07",
+      "text": "and as you can see the library was able"
+    },
+    {
+      "start_time": "00:07:06",
+      "end_time": "00:07:10",
+      "text": "to"
+    },
+    {
+      "start_time": "00:07:07",
+      "end_time": "00:07:14",
+      "text": "get back also the value of the"
+    },
+    {
+      "start_time": "00:07:10",
+      "end_time": "00:07:17",
+      "text": "temperature and the humidity so if we"
+    },
+    {
+      "start_time": "00:07:14",
+      "end_time": "00:07:17",
+      "text": "try to check the code"
+    },
+    {
+      "start_time": "00:07:23",
+      "end_time": "00:07:29",
+      "text": "so the only difference here is that it's"
+    },
+    {
+      "start_time": "00:07:26",
+      "end_time": "00:07:31",
+      "text": "importing the adapter underscore DHT"
+    },
+    {
+      "start_time": "00:07:29",
+      "end_time": "00:07:32",
+      "text": "with the first letter in capitalized"
+    },
+    {
+      "start_time": "00:07:31",
+      "end_time": "00:07:36",
+      "text": "form"
+    },
+    {
+      "start_time": "00:07:32",
+      "end_time": "00:07:39",
+      "text": "and then the sensor value is dictated as"
+    },
+    {
+      "start_time": "00:07:36",
+      "end_time": "00:07:40",
+      "text": "the ht22 so you can replace it with the"
+    },
+    {
+      "start_time": "00:07:39",
+      "end_time": "00:07:43",
+      "text": "dht11"
+    },
+    {
+      "start_time": "00:07:40",
+      "end_time": "00:07:45",
+      "text": "then you just need to define the pins"
+    },
+    {
+      "start_time": "00:07:43",
+      "end_time": "00:07:49",
+      "text": "and then after defining the pins there"
+    },
+    {
+      "start_time": "00:07:45",
+      "end_time": "00:07:52",
+      "text": "is a complete Loop here just type it"
+    },
+    {
+      "start_time": "00:07:49",
+      "end_time": "00:07:54",
+      "text": "check the method that is needed you see"
+    },
+    {
+      "start_time": "00:07:52",
+      "end_time": "00:07:57",
+      "text": "that it is calling the read and retry"
+    },
+    {
+      "start_time": "00:07:54",
+      "end_time": "00:08:00",
+      "text": "which is the sensor and then"
+    },
+    {
+      "start_time": "00:07:57",
+      "end_time": "00:08:03",
+      "text": "which you can call by passing the sensor"
+    },
+    {
+      "start_time": "00:08:00",
+      "end_time": "00:08:05",
+      "text": "and the paint and as you can see the"
+    },
+    {
+      "start_time": "00:08:03",
+      "end_time": "00:08:08",
+      "text": "reason why it is redundant right such"
+    },
+    {
+      "start_time": "00:08:05",
+      "end_time": "00:08:11",
+      "text": "that if there's a failure then it will"
+    },
+    {
+      "start_time": "00:08:08",
+      "end_time": "00:08:15",
+      "text": "wait for two seconds before trying to"
+    },
+    {
+      "start_time": "00:08:11",
+      "end_time": "00:08:18",
+      "text": "read again the hd22 sensor and then"
+    },
+    {
+      "start_time": "00:08:15",
+      "end_time": "00:08:20",
+      "text": "after the values are retrieved then it"
+    },
+    {
+      "start_time": "00:08:18",
+      "end_time": "00:08:22",
+      "text": "just prints the temperature and the"
+    },
+    {
+      "start_time": "00:08:20",
+      "end_time": "00:08:25",
+      "text": "humidity"
+    },
+    {
+      "start_time": "00:08:22",
+      "end_time": "00:08:29",
+      "text": "so basically that's really how easy it"
+    },
+    {
+      "start_time": "00:08:25",
+      "end_time": "00:08:31",
+      "text": "is to read your hd22 sensor using the"
+    },
+    {
+      "start_time": "00:08:29",
+      "end_time": "00:08:34",
+      "text": "crap root library and the Python"
+    },
+    {
+      "start_time": "00:08:31",
+      "end_time": "00:08:38",
+      "text": "programming language so that's it I hope"
+    },
+    {
+      "start_time": "00:08:34",
+      "end_time": "00:08:38",
+      "text": "you learned something happy exploring"
+    },
+    {
+      "start_time": "00:08:40",
+      "end_time": "00:08:44",
+      "text": "[Music]"
+    }
+  ],
+  "visual_description": [
+    {
+      "start_time": "00:00:00",
+      "end_time": "00:00:06",
+      "description": "The video starts with a title screen or intro graphic displaying 'Donkey Tech' in a modern font, possibly with a tech-related background image or animation."
+    },
+    {
+      "start_time": "00:00:03",
+      "end_time": "00:00:09",
+      "description": "The host, likely a tech enthusiast or engineer, appears on screen with a friendly smile, standing or sitting in front of a background related to electronics or coding."
+    },
+    {
+      "start_time": "00:00:06",
+      "end_time": "00:00:11",
+      "description": "The camera zooms in on the host's hands holding a DHT22 sensor module, showing its components and wiring."
+    },
+    {
+      "start_time": "00:00:09",
+      "end_time": "00:00:14",
+      "description": "The host is seen holding a Raspberry Pi, showing it to the camera, with the Raspberry Pi's components and ports visible."
+    },
+    {
+      "start_time": "00:00:11",
+      "end_time": "00:00:17",
+      "description": "A computer screen or a coding window appears on screen, displaying Python code related to the project."
+    },
+    {
+      "start_time": "00:00:14",
+      "end_time": "00:00:21",
+      "description": "The host is shown arranging the components on a table, including the DHT22 sensor module, Raspberry Pi, breakout board, and connecting wires."
+    },
+    {
+      "start_time": "00:00:17",
+      "end_time": "00:00:25",
+      "description": "A close-up shot of the DHT22 sensor module is shown, highlighting its pins and components, with the host's fingers pointing to the different parts."
+    },
+    {
+      "start_time": "00:00:21",
+      "end_time": "00:00:27",
+      "description": "The Raspberry Pi Zero W is displayed on screen, with the host holding it and showing its various ports and the breakout board connected to it."
+    },
+    {
+      "start_time": "00:00:25",
+      "end_time": "00:00:31",
+      "description": "The host is seen connecting the wires to the DHT22 sensor module and the Raspberry Pi, demonstrating the wiring process."
+    },
+    {
+      "start_time": "00:00:27",
+      "end_time": "00:00:35",
+      "description": "A diagram or schematic of the circuit appears on screen, showing how to connect the DHT22 sensor module to the Raspberry Pi."
+    },
+    {
+      "start_time": "00:00:31",
+      "end_time": "00:00:38",
+      "description": "The host is shown pointing to the DHT22 sensor module, explaining its features, with the camera zooming in on the module."
+    },
+    {
+      "start_time": "00:00:35",
+      "end_time": "00:00:41",
+      "description": "The camera focuses on the breakout board, showing how it is connected to the Raspberry Pi and the DHT22 sensor module."
+    },
+    {
+      "start_time": "00:00:38",
+      "end_time": "00:00:43",
+      "description": "The host is seen holding the DHT22 sensor module, explaining that it contains a pull-up resistor and filter capacitor."
+    },
+    {
+      "start_time": "00:00:41",
+      "end_time": "00:00:46",
+      "description": "The host is shown connecting the DHT22 sensor module to the Raspberry Pi, demonstrating that no external components are needed."
+    },
+    {
+      "start_time": "00:00:43",
+      "end_time": "00:00:51",
+      "description": "A close-up shot of the connections between the DHT22 sensor module and the Raspberry Pi is shown, highlighting the simplicity of the setup."
+    },
+    {
+      "start_time": "00:00:46",
+      "end_time": "00:00:54",
+      "description": "The host is seen explaining the output of the DHT22 sensor module, with a graphic or animation illustrating the temperature and humidity data."
+    },
+    {
+      "start_time": "00:00:51",
+      "end_time": "00:00:57",
+      "description": "The camera zooms in on the DHT22 sensor module's data line, showing how it outputs both temperature and humidity data."
+    },
+    {
+      "start_time": "00:00:54",
+      "end_time": "00:01:00",
+      "description": "The host is shown holding the DHT22 sensor module, explaining that it has three pins: power, ground, and data."
+    },
+    {
+      "start_time": "00:00:57",
+      "end_time": "00:01:03",
+      "description": "A diagram or graphic illustrating the pinout of the DHT22 sensor module appears on screen."
+    },
+    {
+      "start_time": "00:01:00",
+      "end_time": "00:01:06",
+      "description": "The host is seen connecting the DHT22 sensor module to the Raspberry Pi, demonstrating the wiring process."
+    },
+    {
+      "start_time": "00:01:03",
+      "end_time": "00:01:09",
+      "description": "The camera focuses on the data line connection between the DHT22 sensor module and the Raspberry Pi."
+    },
+    {
+      "start_time": "00:01:06",
+      "end_time": "00:01:12",
+      "description": "The host is shown explaining how the temperature and humidity data is transmitted through the data line."
+    },
+    {
+      "start_time": "00:01:09",
+      "end_time": "00:01:14",
+      "description": "A wiring diagram or schematic appears on screen, showing the connections between the DHT22 sensor module and the Raspberry Pi."
+    },
+    {
+      "start_time": "00:01:12",
+      "end_time": "00:01:17",
+      "description": "The host is seen summarizing the wiring process, with a shot of the completed setup."
+    },
+    {
+      "start_time": "00:01:14",
+      "end_time": "00:01:22",
+      "description": "The camera zooms in on the Raspberry Pi's GPIO pins, showing how to connect the DHT22 sensor module's data line."
+    },
+    {
+      "start_time": "00:01:17",
+      "end_time": "00:01:24",
+      "description": "The host is seen connecting the ground and VCC pins of the DHT22 sensor module to the Raspberry Pi's ground and 3.3V pins."
+    },
+    {
+      "start_time": "00:01:22",
+      "end_time": "00:01:27",
+      "description": "The camera focuses on the connections, showing that the setup is straightforward and easy to follow."
+    },
+    {
+      "start_time": "00:01:24",
+      "end_time": "00:01:30",
+      "description": "The host is seen holding the Raspberry Pi Zero W, mentioning that other Raspberry Pi variants can be used."
+    },
+    {
+      "start_time": "00:01:27",
+      "end_time": "00:01:33",
+      "description": "The host is shown explaining the data pin connection to one of the Raspberry Pi's digital pins."
+    },
+    {
+      "start_time": "00:01:30",
+      "end_time": "00:01:37",
+      "description": "The camera zooms in on the Raspberry Pi's digital pins, showing the specific pin used for the data line connection."
+    },
+    {
+      "start_time": "00:01:33",
+      "end_time": "00:01:39",
+      "description": "The host is seen mentioning that the Raspberry Pi Zero W is being used, but other variants like Raspberry Pi 4B or Raspberry Pi Zero 2 W can be used."
+    },
+    {
+      "start_time": "00:01:37",
+      "end_time": "00:01:41",
+      "description": "A shot of different Raspberry Pi models appears on screen, comparing their features."
+    },
+    {
+      "start_time": "00:01:39",
+      "end_time": "00:01:45",
+      "description": "The host is seen explaining the compatibility of the project with different Raspberry Pi variants."
+    },
+    {
+      "start_time": "00:01:41",
+      "end_time": "00:01:47",
+      "description": "The camera shows a comparison of the Raspberry Pi 4B and Raspberry Pi Zero 2 W, highlighting their differences."
+    },
+    {
+      "start_time": "00:01:45",
+      "end_time": "00:01:52",
+      "description": "The host is seen transitioning to the coding part of the project, with the camera showing the coding window on the computer screen."
+    },
+    {
+      "start_time": "00:01:47",
+      "end_time": "00:01:55",
+      "description": "The host is seen explaining that the code for the project is available on their GitHub repository."
+    },
+    {
+      "start_time": "00:01:52",
+      "end_time": "00:01:58",
+      "description": "The camera shows the host's computer screen, displaying the Python code for the project."
+    },
+    {
+      "start_time": "00:01:55",
+      "end_time": "00:02:00",
+      "description": "The host is seen mentioning the GitHub repository link, which will be provided in the video description."
+    },
+    {
+      "start_time": "00:01:58",
+      "end_time": "00:02:05",
+      "description": "The camera shows the video description section, with the host's GitHub repository link appearing on screen."
+    },
+    {
+      "start_time": "00:02:00",
+      "end_time": "00:02:09",
+      "description": "The host is seen explaining how to use the library to connect the DHT22 sensor module to the Raspberry Pi."
+    },
+    {
+      "start_time": "00:02:05",
+      "end_time": "00:02:11",
+      "description": "The camera shows a search engine or a coding website, with the host searching for the library to use with the DHT22 sensor module."
+    },
+    {
+      "start_time": "00:02:09",
+      "end_time": "00:02:14",
+      "description": "The host is seen explaining that there are multiple libraries available for connecting the DHT22 sensor module to the Raspberry Pi."
+    },
+    {
+      "start_time": "00:02:11",
+      "end_time": "00:02:16",
+      "description": "The camera shows a list of search results, with different library options for the DHT22 sensor module."
+    },
+    {
+      "start_time": "00:02:14",
+      "end_time": "00:02:20",
+      "description": "The host is seen concluding the explanation, with a shot of the completed project and the coding window on the computer screen."
+    },
+    {
+      "start_time": "00:02:16",
+      "end_time": "00:02:25",
+      "description": "The speaker is visible on screen with a slight gesture, likely pointing or highlighting something on their screen or a whiteboard. The background is a typical office or home workspace with minimal distractions."
+    },
+    {
+      "start_time": "00:02:20",
+      "end_time": "00:02:27",
+      "description": "The camera focuses on a computer screen showing code or a documentation page related to the 'adapro circuit python DHT Library'. The text on the screen is likely discussing or showing examples of how to use this library."
+    },
+    {
+      "start_time": "00:02:25",
+      "end_time": "00:02:29",
+      "description": "The speaker's face is visible, and they are likely explaining or discussing the 'latest project'. The camera might zoom in slightly on their face or the screen they are referring to."
+    },
+    {
+      "start_time": "00:02:27",
+      "end_time": "00:02:32",
+      "description": "The visual focus remains on the speaker or switches to a graphic illustrating the 'latest library' being discussed. This could be a slide or a highlighted section on their screen."
+    },
+    {
+      "start_time": "00:02:29",
+      "end_time": "00:02:35",
+      "description": "The speaker is gesturing or pointing at their screen, which displays information related to searching for libraries on Google. The screen might show a browser with search results."
+    },
+    {
+      "start_time": "00:02:32",
+      "end_time": "00:02:39",
+      "description": "The camera shows a close-up of the screen displaying search results or documentation that includes 'old library' references, likely highlighting the difference between the current and outdated versions."
+    },
+    {
+      "start_time": "00:02:35",
+      "end_time": "00:02:42",
+      "description": "The visual content on the screen is now focused on the 'adapt python DHT' library, showing code snippets or documentation. The speaker might be scrolling through or highlighting specific parts."
+    },
+    {
+      "start_time": "00:02:39",
+      "end_time": "00:02:46",
+      "description": "The speaker's expression or gestures indicate a problem or issue, likely related to the deprecated library. The screen might show error messages or outdated code."
+    },
+    {
+      "start_time": "00:02:42",
+      "end_time": "00:02:49",
+      "description": "The visual elements on the screen or the speaker's gestures emphasize that the library is 'deprecated'. This could be shown through text on the screen or the speaker holding up a note or a printed document."
+    },
+    {
+      "start_time": "00:02:46",
+      "end_time": "00:02:51",
+      "description": "The camera focuses on the speaker explaining potential 'issues with your readings'. The speaker's hands might be gesturing to illustrate the problem or point to a specific part of the code or data on the screen."
+    },
+    {
+      "start_time": "00:02:49",
+      "end_time": "00:02:54",
+      "description": "The screen or a graphic illustrates the challenges or difficulties in using the deprecated library, reinforcing the speaker's verbal explanation."
+    },
+    {
+      "start_time": "00:02:51",
+      "end_time": "00:02:57",
+      "description": "The speaker is visible, likely summarizing or concluding the discussion about the deprecated library and its 'ended support'."
+    },
+    {
+      "start_time": "00:02:54",
+      "end_time": "00:02:59",
+      "description": "The visual content shifts to show the speaker's current project or setup, indicating a transition towards demonstrating the alternative or recommended library."
+    },
+    {
+      "start_time": "00:02:57",
+      "end_time": "00:03:02",
+      "description": "The camera shows the speaker's hands or cursor moving on the screen as they explain how to use 'both libraries' for comparison."
+    },
+    {
+      "start_time": "00:02:59",
+      "end_time": "00:03:04",
+      "description": "The screen displays a split view or successive views of the two libraries being discussed, allowing the viewer to see the differences or similarities."
+    },
+    {
+      "start_time": "00:03:02",
+      "end_time": "00:03:08",
+      "description": "The speaker is shown making a decision or comparison between the libraries, possibly with a graphic or table on the screen to facilitate the comparison."
+    },
+    {
+      "start_time": "00:03:04",
+      "end_time": "00:03:11",
+      "description": "The camera zooms in on the 'companion write-up' or documentation that outlines the steps for using the libraries. This could be a PDF, a webpage, or a text editor on the screen."
+    },
+    {
+      "start_time": "00:03:08",
+      "end_time": "00:03:14",
+      "description": "The visual focus is on the detailed steps outlined in the companion write-up, with the speaker possibly scrolling through or highlighting key points."
+    },
+    {
+      "start_time": "00:03:11",
+      "end_time": "00:03:18",
+      "description": "The speaker is shown following the steps on their screen, demonstrating how to install or use the libraries. The camera might alternate between the speaker's face and the screen."
+    },
+    {
+      "start_time": "00:03:14",
+      "end_time": "00:03:20",
+      "description": "The camera shows a close-up of the installation process or the code being written, highlighting how the library is being installed or used."
+    },
+    {
+      "start_time": "00:03:18",
+      "end_time": "00:03:22",
+      "description": "The screen displays the installation or setup process, with the speaker narrating the steps being taken."
+    },
+    {
+      "start_time": "00:03:20",
+      "end_time": "00:03:25",
+      "description": "The visual content on the screen now compares or contrasts the 'adapod circuit python DHT' and 'adaproot DHT' libraries, possibly through code snippets or documentation."
+    },
+    {
+      "start_time": "00:03:22",
+      "end_time": "00:03:28",
+      "description": "The camera focuses on the naming and possibly the logos or icons associated with the two libraries on the screen."
+    },
+    {
+      "start_time": "00:03:25",
+      "end_time": "00:03:32",
+      "description": "The speaker is shown discussing or highlighting the differences or specific features of the 'adapod circuit python' library, with relevant visuals on the screen."
+    },
+    {
+      "start_time": "00:03:28",
+      "end_time": "00:03:35",
+      "description": "The visual elements on the screen illustrate the 'adaproot DHT' library, possibly showing how it is used or its advantages."
+    },
+    {
+      "start_time": "00:03:32",
+      "end_time": "00:03:37",
+      "description": "The speaker gestures or points out the 'concern' with the 'adapt circuit python', likely related to its installation process, which is shown on the screen."
+    },
+    {
+      "start_time": "00:03:35",
+      "end_time": "00:03:40",
+      "description": "The camera zooms in on the installation steps or requirements for 'circuit python', highlighting the complexity or specific needs."
+    },
+    {
+      "start_time": "00:03:37",
+      "end_time": "00:03:43",
+      "description": "The visual content on the screen explains or demonstrates the necessity of installing 'circuit python library' for the 'adapload project'."
+    },
+    {
+      "start_time": "00:03:40",
+      "end_time": "00:03:46",
+      "description": "The speaker is shown explaining or narrating the process, possibly with a graphic illustrating the relationship between 'circuit python' and 'adapload industries'."
+    },
+    {
+      "start_time": "00:03:43",
+      "end_time": "00:03:48",
+      "description": "The camera shows a close-up of the screen as the speaker discusses or highlights the 'micro python implementation' aspect."
+    },
+    {
+      "start_time": "00:03:46",
+      "end_time": "00:03:51",
+      "description": "The visual elements on the screen or the speaker's gestures illustrate the steps or process of installing the necessary libraries or components."
+    },
+    {
+      "start_time": "00:03:48",
+      "end_time": "00:03:54",
+      "description": "The speaker is visible, explaining or discussing 'circuit python' in more detail, possibly with related visuals or diagrams on the screen."
+    },
+    {
+      "start_time": "00:03:51",
+      "end_time": "00:03:57",
+      "description": "The camera shows the outcome or result of following the installation steps, likely a successful installation or a working project on the screen."
+    },
+    {
+      "start_time": "00:03:54",
+      "end_time": "00:04:00",
+      "description": "The visual focus is on the 'project' or the outcome of the installation and setup process, with the speaker possibly demonstrating its functionality."
+    },
+    {
+      "start_time": "00:03:57",
+      "end_time": "00:04:03",
+      "description": "The speaker is shown connecting or setting up their 'Raspberry Pi', with the camera capturing the hardware and the screen showing the relevant commands or outputs."
+    },
+    {
+      "start_time": "00:04:00",
+      "end_time": "00:04:07",
+      "description": "The camera captures the speaker's 'project' on the screen or on the Raspberry Pi, showing the files or the interface of the project."
+    },
+    {
+      "start_time": "00:04:03",
+      "end_time": "00:04:10",
+      "description": "The visual content on the screen lists or displays the files or components of the project, with the speaker explaining or pointing out specific files."
+    },
+    {
+      "start_time": "00:04:07",
+      "end_time": "00:04:12",
+      "description": "The camera zooms in on the files or directories, showing 'new' and 'old' files or versions, likely related to the libraries discussed."
+    },
+    {
+      "start_time": "00:04:10",
+      "end_time": "00:04:15",
+      "description": "The screen displays the 'new' Python file using the 'new circuit python library' and the 'old' file using the deprecated library, side by side or in succession."
+    },
+    {
+      "start_time": "00:04:12",
+      "end_time": "00:04:19",
+      "description": "The speaker highlights or compares the two files, possibly showing code snippets or the differences between the 'new' and 'old' implementations."
+    },
+    {
+      "start_time": "00:04:15",
+      "end_time": "00:04:22",
+      "description": "The visual content on the screen focuses on the 'new' Python file, showing how it utilizes the 'circuit python library'."
+    },
+    {
+      "start_time": "00:04:19",
+      "end_time": "00:04:24",
+      "description": "The camera shows a comparison or a side-by-side view of the 'new' and 'old' Python files, highlighting the differences or the evolution."
+    },
+    {
+      "start_time": "00:04:22",
+      "end_time": "00:04:28",
+      "description": "The screen displays the 'old' Python file, emphasizing its use of the 'adaproot python DHT Library' and possibly discussing its deprecation."
+    },
+    {
+      "start_time": "00:04:24",
+      "end_time": "00:04:30",
+      "description": "The visual elements on the screen or the speaker's gestures reinforce the explanation of why the 'old' library is deprecated and should be replaced."
+    },
+    {
+      "start_time": "00:04:28",
+      "end_time": "00:04:32",
+      "description": "A person is sitting in front of a computer screen displaying code in a text editor or IDE. The person's hands are on the keyboard."
+    },
+    {
+      "start_time": "00:04:30",
+      "end_time": "00:04:35",
+      "description": "The computer screen shows two files open in the text editor or IDE. The files appear to be Python scripts."
+    },
+    {
+      "start_time": "00:04:32",
+      "end_time": "00:04:39",
+      "description": "The person's cursor is hovering over or clicking on a button or menu item to execute the Python scripts."
+    },
+    {
+      "start_time": "00:04:35",
+      "end_time": "00:04:43",
+      "description": "The person types 'python' followed by the name of one of the Python files on the command line or terminal."
+    },
+    {
+      "start_time": "00:04:39",
+      "end_time": "00:04:43",
+      "description": "The text editor or IDE shows the Python file being executed, with the command 'python' followed by the filename."
+    },
+    {
+      "start_time": "00:04:43",
+      "end_time": "00:04:48",
+      "description": "The output of the Python script is displayed on the terminal or command prompt, showing the results of the execution."
+    },
+    {
+      "start_time": "00:04:46",
+      "end_time": "00:04:52",
+      "description": "The output includes the values of temperature and humidity, indicating that the script is reading data from a sensor."
+    },
+    {
+      "start_time": "00:04:48",
+      "end_time": "00:04:55",
+      "description": "A message is displayed on the screen indicating that the 'pull buffer' is being ignored, likely related to the sensor reading."
+    },
+    {
+      "start_time": "00:04:52",
+      "end_time": "00:04:58",
+      "description": "The person is explaining or narrating the output on the screen, possibly pointing at the values or messages."
+    },
+    {
+      "start_time": "00:04:55",
+      "end_time": "00:05:00",
+      "description": "The screen shows a message or log indicating that the library was not able to read the sensor reading, but it's being ignored."
+    },
+    {
+      "start_time": "00:04:58",
+      "end_time": "00:05:04",
+      "description": "The person continues to narrate or explain the code and its output, possibly highlighting the temperature and humidity values."
+    },
+    {
+      "start_time": "00:05:00",
+      "end_time": "00:05:06",
+      "description": "The output on the screen continues to display the temperature and humidity readings, showing that the sensor is working."
+    },
+    {
+      "start_time": "00:05:04",
+      "end_time": "00:05:08",
+      "description": "The person is holding a sensor, likely a DHT22 temperature and humidity sensor, in their hand."
+    },
+    {
+      "start_time": "00:05:06",
+      "end_time": "00:05:11",
+      "description": "The values on the screen are changing as the person holds the sensor, indicating that it's detecting changes in temperature and humidity."
+    },
+    {
+      "start_time": "00:05:08",
+      "end_time": "00:05:15",
+      "description": "The person's hand is shown holding the sensor, with the values on the screen changing in response to the sensor's readings."
+    },
+    {
+      "start_time": "00:05:11",
+      "end_time": "00:05:18",
+      "description": "The humidity value on the screen is increasing as the person holds the sensor, demonstrating its functionality."
+    },
+    {
+      "start_time": "00:05:15",
+      "end_time": "00:05:21",
+      "description": "The person's hand is still holding the sensor, and the values on the screen continue to change."
+    },
+    {
+      "start_time": "00:05:18",
+      "end_time": "00:05:23",
+      "description": "The person is explaining or narrating how the sensor is detecting changes in humidity."
+    },
+    {
+      "start_time": "00:05:21",
+      "end_time": "00:05:27",
+      "description": "The screen continues to display the changing values, reinforcing the explanation."
+    },
+    {
+      "start_time": "00:05:23",
+      "end_time": "00:05:31",
+      "description": "The person is concluding their explanation or demonstration, possibly summarizing the key points."
+    },
+    {
+      "start_time": "00:05:27",
+      "end_time": "00:05:34",
+      "description": "The screen shows the code for the 'new DHT simple' example, highlighting its simplicity."
+    },
+    {
+      "start_time": "00:05:31",
+      "end_time": "00:05:36",
+      "description": "The code on the screen is a simple Python script that imports necessary libraries and creates a DHT device."
+    },
+    {
+      "start_time": "00:05:34",
+      "end_time": "00:05:38",
+      "description": "The person is explaining or narrating the code, highlighting its key aspects."
+    },
+    {
+      "start_time": "00:05:36",
+      "end_time": "00:05:42",
+      "description": "The code on the screen shows the import statements for the necessary libraries."
+    },
+    {
+      "start_time": "00:05:38",
+      "end_time": "00:05:45",
+      "description": "The person is creating a DHT device in the code, specifying the GPIO pin number."
+    },
+    {
+      "start_time": "00:05:42",
+      "end_time": "00:05:48",
+      "description": "The code specifies that the DHT device is a DHT22, but mentions that the library is also applicable to DHT11 variants."
+    },
+    {
+      "start_time": "00:05:45",
+      "end_time": "00:05:52",
+      "description": "The person is explaining that the library can be used with different DHT sensor variants."
+    },
+    {
+      "start_time": "00:05:48",
+      "end_time": "00:05:55",
+      "description": "The code on the screen shows the GPIO pin number being passed to the DHT device, which is GPIO18 in this case."
+    },
+    {
+      "start_time": "00:05:52",
+      "end_time": "00:05:58",
+      "description": "The person is explaining that the code continually loops and reads the temperature and humidity values."
+    },
+    {
+      "start_time": "00:05:55",
+      "end_time": "00:06:02",
+      "description": "The code on the screen shows the loop that reads the temperature and humidity values."
+    },
+    {
+      "start_time": "00:05:58",
+      "end_time": "00:06:06",
+      "description": "The person is specifying the GPIO pin number used for the DHT sensor, which is GPIO18."
+    },
+    {
+      "start_time": "00:06:02",
+      "end_time": "00:06:09",
+      "description": "The code on the screen continues to show the looping and reading of sensor values."
+    },
+    {
+      "start_time": "00:06:06",
+      "end_time": "00:06:11",
+      "description": "The person is explaining how the code reads the temperature by calling the DHT device."
+    },
+    {
+      "start_time": "00:06:09",
+      "end_time": "00:06:14",
+      "description": "The code on the screen shows the temperature being read and possibly converted to a different unit."
+    },
+    {
+      "start_time": "00:06:11",
+      "end_time": "00:06:16",
+      "description": "The person is explaining the conversion or processing of the temperature and humidity values."
+    },
+    {
+      "start_time": "00:06:14",
+      "end_time": "00:06:19",
+      "description": "The code on the screen shows the humidity being read and possibly processed or converted."
+    },
+    {
+      "start_time": "00:06:16",
+      "end_time": "00:06:22",
+      "description": "The person is explaining how the code handles errors, such as runtime errors related to the DHT sensor."
+    },
+    {
+      "start_time": "00:06:19",
+      "end_time": "00:06:24",
+      "description": "The code on the screen shows error handling for the DHT sensor readings."
+    },
+    {
+      "start_time": "00:06:22",
+      "end_time": "00:06:27",
+      "description": "The person is explaining that the code continues to loop and read sensor values despite errors."
+    },
+    {
+      "start_time": "00:06:24",
+      "end_time": "00:06:29",
+      "description": "The code on the screen shows the error being printed, but the loop continuing."
+    },
+    {
+      "start_time": "00:06:27",
+      "end_time": "00:06:32",
+      "description": "The person is explaining that the DHT library can encounter errors fairly often."
+    },
+    {
+      "start_time": "00:06:29",
+      "end_time": "00:06:36",
+      "description": "The code on the screen continues to show the looping and error handling."
+    },
+    {
+      "start_time": "00:06:32",
+      "end_time": "00:06:38",
+      "description": "The person is concluding their explanation of the code and its functionality."
+    },
+    {
+      "start_time": "00:06:36",
+      "end_time": "00:06:41",
+      "description": "The screen shows the final parts of the code, reinforcing the explanation."
+    },
+    {
+      "start_time": "00:06:38",
+      "end_time": "00:06:43",
+      "description": "The screen displays a code editor with a snippet of Python code visible, and the cursor is seen moving or hovering over a line of code."
+    },
+    {
+      "start_time": "00:06:41",
+      "end_time": "00:06:46",
+      "description": "The code editor remains on the screen, with the speaker's voiceover indicating they are explaining the code. The code is related to reading sensor data."
+    },
+    {
+      "start_time": "00:06:43",
+      "end_time": "00:06:48",
+      "description": "The video transitions to showing a summary or conclusion of the steps taken so far in reading the sensor data using a specific library."
+    },
+    {
+      "start_time": "00:06:46",
+      "end_time": "00:06:51",
+      "description": "The screen continues to show the code related to reading the sensor, with the cursor possibly highlighting or moving to a specific line related to 'read the'."
+    },
+    {
+      "start_time": "00:06:48",
+      "end_time": "00:06:55",
+      "description": "The code on the screen is now focusing on the 'see22 sensor' (likely referring to a DHT22 sensor), and the speaker is explaining how to use a specific library to read it."
+    },
+    {
+      "start_time": "00:06:51",
+      "end_time": "00:06:57",
+      "description": "The video transitions to showing an older or alternative library for reading the sensor, indicating a comparison or demonstration of different approaches."
+    },
+    {
+      "start_time": "00:06:55",
+      "end_time": "00:07:00",
+      "description": "The screen shows the 'old Library' being used, with the speaker explaining the differences or the process of using this library."
+    },
+    {
+      "start_time": "00:06:57",
+      "end_time": "00:07:03",
+      "description": "The terminal or command prompt is visible on the screen, showing the execution of a Python script to read the sensor data using the mentioned library."
+    },
+    {
+      "start_time": "00:07:00",
+      "end_time": "00:07:03",
+      "description": "The screen shows the execution or output of running the Python script, with the text 'all' possibly being part of the output or a command."
+    },
+    {
+      "start_time": "00:07:03",
+      "end_time": "00:07:07",
+      "description": "The output of the script is visible, showing that the library was able to successfully retrieve sensor data, likely temperature and humidity."
+    },
+    {
+      "start_time": "00:07:06",
+      "end_time": "00:07:10",
+      "description": "The screen continues to display the output or result of the script execution, focusing on the successful retrieval of sensor data."
+    },
+    {
+      "start_time": "00:07:07",
+      "end_time": "00:07:14",
+      "description": "The values of temperature and humidity retrieved from the sensor are displayed on the screen, likely as part of the script's output."
+    },
+    {
+      "start_time": "00:07:10",
+      "end_time": "00:07:17",
+      "description": "The speaker is explaining the next steps or the code that was executed, with the screen possibly showing a code snippet related to checking or reading the sensor values."
+    },
+    {
+      "start_time": "00:07:14",
+      "end_time": "00:07:17",
+      "description": "The code editor or viewer is open on the screen, showing the code that was executed, with a focus on the method or function used to read the sensor."
+    },
+    {
+      "start_time": "00:07:23",
+      "end_time": "00:07:29",
+      "description": "A comparison is made on the screen between different code snippets or libraries, highlighting the differences in how the sensor data is read."
+    },
+    {
+      "start_time": "00:07:26",
+      "end_time": "00:07:31",
+      "description": "The code on the screen shows the import statement for 'adapter underscore DHT' with the first letter capitalized, indicating a specific library or module being used."
+    },
+    {
+      "start_time": "00:07:29",
+      "end_time": "00:07:32",
+      "description": "The capitalization of the first letter in the import statement is highlighted, possibly to point out a difference or a requirement of the library being used."
+    },
+    {
+      "start_time": "00:07:31",
+      "end_time": "00:07:36",
+      "description": "The code snippet continues to be displayed, showing the capitalized form of the import statement, which is a key part of using the library correctly."
+    },
+    {
+      "start_time": "00:07:32",
+      "end_time": "00:07:39",
+      "description": "The sensor value is being defined or dictated in the code, with the specific sensor type (e.g., DHT22) being mentioned or used in the code snippet."
+    },
+    {
+      "start_time": "00:07:36",
+      "end_time": "00:07:40",
+      "description": "The code allows for replacing the sensor type (e.g., from DHT22 to DHT11), showing flexibility or options in the code for different sensor types."
+    },
+    {
+      "start_time": "00:07:39",
+      "end_time": "00:07:43",
+      "description": "The screen continues to show the code related to defining the pins for the sensor, a necessary step for reading the sensor data."
+    },
+    {
+      "start_time": "00:07:40",
+      "end_time": "00:07:45",
+      "description": "The code snippet on the screen includes defining the pins for the sensor connection, a crucial step for the sensor to work with the microcontroller or computer."
+    },
+    {
+      "start_time": "00:07:43",
+      "end_time": "00:07:49",
+      "description": "After defining the pins, the code enters a loop, likely for continuously reading the sensor data, with the speaker explaining the process."
+    },
+    {
+      "start_time": "00:07:45",
+      "end_time": "00:07:52",
+      "description": "The loop in the code is highlighted or shown on the screen, with the speaker explaining the necessity of looping to continuously read sensor data."
+    },
+    {
+      "start_time": "00:07:49",
+      "end_time": "00:07:54",
+      "description": "The code within the loop is examined, showing the method or function used to read the sensor data, with an explanation provided by the speaker."
+    },
+    {
+      "start_time": "00:07:52",
+      "end_time": "00:07:57",
+      "description": "The 'read and retry' method is called out in the code, showing how the library handles potential failures in reading the sensor data."
+    },
+    {
+      "start_time": "00:07:54",
+      "end_time": "00:08:00",
+      "description": "The code continues to be displayed, with the focus on the 'read and retry' mechanism, which includes passing the sensor and pin information."
+    },
+    {
+      "start_time": "00:07:57",
+      "end_time": "00:08:03",
+      "description": "The screen shows the specifics of calling the 'read and retry' method, including the parameters such as sensor type and pin configuration."
+    },
+    {
+      "start_time": "00:08:00",
+      "end_time": "00:08:05",
+      "description": "The reasoning behind the 'read and retry' mechanism is explained, highlighting its redundancy in case of initial failure to read the sensor."
+    },
+    {
+      "start_time": "00:08:03",
+      "end_time": "00:08:08",
+      "description": "The code's behavior in case of failure is shown, where it waits for a couple of seconds before retrying to read the sensor data."
+    },
+    {
+      "start_time": "00:08:05",
+      "end_time": "00:08:11",
+      "description": "The screen continues to display the code related to the retry mechanism, emphasizing its importance for reliable sensor data reading."
+    },
+    {
+      "start_time": "00:08:08",
+      "end_time": "00:08:15",
+      "description": "The process of reading the sensor data is visualized on the screen, with the code waiting and retrying if there's a failure."
+    },
+    {
+      "start_time": "00:08:11",
+      "end_time": "00:08:18",
+      "description": "After successfully retrieving the sensor data, the code prints out the temperature and humidity values, as shown on the screen."
+    },
+    {
+      "start_time": "00:08:15",
+      "end_time": "00:08:20",
+      "description": "The output of the sensor data is displayed, showing the temperature and humidity readings retrieved by the code."
+    },
+    {
+      "start_time": "00:08:18",
+      "end_time": "00:08:22",
+      "description": "The final output on the screen includes the actual values of temperature and humidity, demonstrating the successful use of the library and code."
+    },
+    {
+      "start_time": "00:08:20",
+      "end_time": "00:08:25",
+      "description": "The conclusion or summary of the demonstration is shown, highlighting how easy it is to read the DHT22 sensor using the library and Python."
+    },
+    {
+      "start_time": "00:08:22",
+      "end_time": "00:08:29",
+      "description": "The speaker concludes the tutorial, stating how straightforward it is to use the 'crap root library' and Python for reading the sensor."
+    },
+    {
+      "start_time": "00:08:25",
+      "end_time": "00:08:31",
+      "description": "The screen fades or transitions as the speaker thanks the viewers and encourages them to continue exploring or learning."
+    },
+    {
+      "start_time": "00:08:29",
+      "end_time": "00:08:34",
+      "description": "The video is wrapping up, with the speaker expressing hope that the viewers learned something new."
+    },
+    {
+      "start_time": "00:08:31",
+      "end_time": "00:08:38",
+      "description": "The conclusion of the video is on the screen, with a final message or call to action before it ends."
+    },
+    {
+      "start_time": "00:08:34",
+      "end_time": "00:08:38",
+      "description": "The speaker bids farewell, saying 'happy exploring,' as the video nears its end."
+    },
+    {
+      "start_time": "00:08:40",
+      "end_time": "00:08:44",
+      "description": "The video ends with background music playing, and possibly the video fading to black or showing a final screen."
+    }
+  ]
+}

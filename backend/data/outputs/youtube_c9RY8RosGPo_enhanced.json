@@ -1,0 +1,798 @@
+{
+  "video_id": "c9RY8RosGPo",
+  "url": "https://youtu.be/c9RY8RosGPo",
+  "transcription": [
+    {
+      "start_time": "00:00:02",
+      "end_time": "00:00:06",
+      "text": "hello everyone welcome back to the"
+    },
+    {
+      "start_time": "00:00:04",
+      "end_time": "00:00:08",
+      "text": "course of Raspberry Pi Pico so in this"
+    },
+    {
+      "start_time": "00:00:06",
+      "end_time": "00:00:11",
+      "text": "video I'm gonna show you how you can"
+    },
+    {
+      "start_time": "00:00:08",
+      "end_time": "00:00:13",
+      "text": "make weather station using Raspberry Pi"
+    },
+    {
+      "start_time": "00:00:11",
+      "end_time": "00:00:16",
+      "text": "Pico and dst11 temperature and humidity"
+    },
+    {
+      "start_time": "00:00:13",
+      "end_time": "00:00:19",
+      "text": "sensor so without wasting any time let's"
+    },
+    {
+      "start_time": "00:00:16",
+      "end_time": "00:00:19",
+      "text": "restart it"
+    },
+    {
+      "start_time": "00:00:24",
+      "end_time": "00:00:30",
+      "text": "[Applause]"
+    },
+    {
+      "start_time": "00:00:27",
+      "end_time": "00:00:34",
+      "text": "so to make the project we need few"
+    },
+    {
+      "start_time": "00:00:30",
+      "end_time": "00:00:37",
+      "text": "components like LC display few jumper"
+    },
+    {
+      "start_time": "00:00:34",
+      "end_time": "00:00:40",
+      "text": "wires DHT 11 temperature humidity sensor"
+    },
+    {
+      "start_time": "00:00:37",
+      "end_time": "00:00:44",
+      "text": "Raspberry Pi Pico and a breadboard"
+    },
+    {
+      "start_time": "00:00:40",
+      "end_time": "00:00:44",
+      "text": "so now let us see the connections"
+    },
+    {
+      "start_time": "00:00:45",
+      "end_time": "00:01:23",
+      "text": "[Music]"
+    },
+    {
+      "start_time": "00:01:27",
+      "end_time": "00:01:30",
+      "text": "thank you"
+    },
+    {
+      "start_time": "00:01:31",
+      "end_time": "00:01:36",
+      "text": "so according to a circuit diagram I"
+    },
+    {
+      "start_time": "00:01:33",
+      "end_time": "00:01:39",
+      "text": "already built the connections so now let"
+    },
+    {
+      "start_time": "00:01:36",
+      "end_time": "00:01:39",
+      "text": "us move to the coding part"
+    },
+    {
+      "start_time": "00:01:40",
+      "end_time": "00:01:45",
+      "text": "now let us come to the coding section"
+    },
+    {
+      "start_time": "00:01:42",
+      "end_time": "00:01:49",
+      "text": "for this project we require four files"
+    },
+    {
+      "start_time": "00:01:45",
+      "end_time": "00:01:53",
+      "text": "which is dsd.5 files velocity API dot Pi"
+    },
+    {
+      "start_time": "00:01:49",
+      "end_time": "00:01:55",
+      "text": "Pico i2clc dot pi and Main dot Pi so we"
+    },
+    {
+      "start_time": "00:01:53",
+      "end_time": "00:01:58",
+      "text": "have to to work in the main dot Pi files"
+    },
+    {
+      "start_time": "00:01:55",
+      "end_time": "00:02:02",
+      "text": "first of all uh I declare i2c equals to"
+    },
+    {
+      "start_time": "00:01:58",
+      "end_time": "00:02:04",
+      "text": "i2c and LCD equals to i2c LCD these are"
+    },
+    {
+      "start_time": "00:02:02",
+      "end_time": "00:02:08",
+      "text": "basically the i2c pins and the LC"
+    },
+    {
+      "start_time": "00:02:04",
+      "end_time": "00:02:10",
+      "text": "display and then"
+    },
+    {
+      "start_time": "00:02:08",
+      "end_time": "00:02:12",
+      "text": "we have to declare that t equals to"
+    },
+    {
+      "start_time": "00:02:10",
+      "end_time": "00:02:15",
+      "text": "sensor dot temperature H equals to"
+    },
+    {
+      "start_time": "00:02:12",
+      "end_time": "00:02:17",
+      "text": "sensor dot humidity and sensor we have"
+    },
+    {
+      "start_time": "00:02:15",
+      "end_time": "00:02:19",
+      "text": "to declare as tstl11"
+    },
+    {
+      "start_time": "00:02:17",
+      "end_time": "00:02:21",
+      "text": "pin which we are using as a temperature"
+    },
+    {
+      "start_time": "00:02:19",
+      "end_time": "00:02:26",
+      "text": "humidity sensor"
+    },
+    {
+      "start_time": "00:02:21",
+      "end_time": "00:02:29",
+      "text": "then we have to use all the uh"
+    },
+    {
+      "start_time": "00:02:26",
+      "end_time": "00:02:32",
+      "text": "all this thing the time job sleep one"
+    },
+    {
+      "start_time": "00:02:29",
+      "end_time": "00:02:35",
+      "text": "TLC dot clear I already explained this"
+    },
+    {
+      "start_time": "00:02:32",
+      "end_time": "00:02:37",
+      "text": "uh syntax in the my previous video you"
+    },
+    {
+      "start_time": "00:02:35",
+      "end_time": "00:02:39",
+      "text": "can go through that big video or I will"
+    },
+    {
+      "start_time": "00:02:37",
+      "end_time": "00:02:41",
+      "text": "give the link of the video in the"
+    },
+    {
+      "start_time": "00:02:39",
+      "end_time": "00:02:45",
+      "text": "description you can watch from there"
+    },
+    {
+      "start_time": "00:02:41",
+      "end_time": "00:02:47",
+      "text": "so these are the one this is my code let"
+    },
+    {
+      "start_time": "00:02:45",
+      "end_time": "00:02:49",
+      "text": "us run the code and upload to the Pico"
+    },
+    {
+      "start_time": "00:02:47",
+      "end_time": "00:02:49",
+      "text": "board"
+    },
+    {
+      "start_time": "00:02:53",
+      "end_time": "00:02:58",
+      "text": "so after uploading the code to my"
+    },
+    {
+      "start_time": "00:02:56",
+      "end_time": "00:03:01",
+      "text": "Raspberry Pi Pico you can see that my"
+    },
+    {
+      "start_time": "00:02:58",
+      "end_time": "00:03:03",
+      "text": "temperature currently showing is 33.2"
+    },
+    {
+      "start_time": "00:03:01",
+      "end_time": "00:03:07",
+      "text": "degree celsius and humidity is"
+    },
+    {
+      "start_time": "00:03:03",
+      "end_time": "00:03:09",
+      "text": "54.0 percentage so in this way you can"
+    },
+    {
+      "start_time": "00:03:07",
+      "end_time": "00:03:13",
+      "text": "make a weather station using Raspberry"
+    },
+    {
+      "start_time": "00:03:09",
+      "end_time": "00:03:16",
+      "text": "Pi Pico and dst11 temperature sensor so"
+    },
+    {
+      "start_time": "00:03:13",
+      "end_time": "00:03:18",
+      "text": "now check whether my temperature is"
+    },
+    {
+      "start_time": "00:03:16",
+      "end_time": "00:03:20",
+      "text": "showing showing is exactly matching to"
+    },
+    {
+      "start_time": "00:03:18",
+      "end_time": "00:03:23",
+      "text": "my actual value or not"
+    },
+    {
+      "start_time": "00:03:20",
+      "end_time": "00:03:23",
+      "text": "so"
+    },
+    {
+      "start_time": "00:03:23",
+      "end_time": "00:03:26",
+      "text": "[Music]"
+    },
+    {
+      "start_time": "00:03:27",
+      "end_time": "00:03:30",
+      "text": "so let us check"
+    },
+    {
+      "start_time": "00:03:33",
+      "end_time": "00:03:36",
+      "text": "[Music]"
+    },
+    {
+      "start_time": "00:03:38",
+      "end_time": "00:03:49",
+      "text": "today's temperature"
+    },
+    {
+      "start_time": "00:03:40",
+      "end_time": "00:03:51",
+      "text": "[Music]"
+    },
+    {
+      "start_time": "00:03:49",
+      "end_time": "00:03:52",
+      "text": "So currently"
+    },
+    {
+      "start_time": "00:03:51",
+      "end_time": "00:03:54",
+      "text": "it is showing that the today's"
+    },
+    {
+      "start_time": "00:03:52",
+      "end_time": "00:03:57",
+      "text": "temperature 34 degree Celsius"
+    },
+    {
+      "start_time": "00:03:54",
+      "end_time": "00:04:01",
+      "text": "uh and it is showing that 33.1 degree"
+    },
+    {
+      "start_time": "00:03:57",
+      "end_time": "00:04:05",
+      "text": "celsius it is almost uh it is a at least"
+    },
+    {
+      "start_time": "00:04:01",
+      "end_time": "00:04:07",
+      "text": "one point uh 1.1 degrees difference of"
+    },
+    {
+      "start_time": "00:04:05",
+      "end_time": "00:04:09",
+      "text": "1.1 degree Celsius"
+    },
+    {
+      "start_time": "00:04:07",
+      "end_time": "00:04:11",
+      "text": "so there is no not much the difference"
+    },
+    {
+      "start_time": "00:04:09",
+      "end_time": "00:04:13",
+      "text": "between the measured value and actual"
+    },
+    {
+      "start_time": "00:04:11",
+      "end_time": "00:04:16",
+      "text": "value the measure value is my uh that"
+    },
+    {
+      "start_time": "00:04:13",
+      "end_time": "00:04:18",
+      "text": "temperature reading on my LC display and"
+    },
+    {
+      "start_time": "00:04:16",
+      "end_time": "00:04:19",
+      "text": "my actual value is this 34 degree"
+    },
+    {
+      "start_time": "00:04:18",
+      "end_time": "00:04:22",
+      "text": "Celsius"
+    },
+    {
+      "start_time": "00:04:19",
+      "end_time": "00:04:25",
+      "text": "so in this way you can make a weather"
+    },
+    {
+      "start_time": "00:04:22",
+      "end_time": "00:04:27",
+      "text": "station using Raspberry Pi Pico"
+    },
+    {
+      "start_time": "00:04:25",
+      "end_time": "00:04:29",
+      "text": "so if you like my video then please like"
+    },
+    {
+      "start_time": "00:04:27",
+      "end_time": "00:04:30",
+      "text": "share and subscribe for more upcoming"
+    },
+    {
+      "start_time": "00:04:29",
+      "end_time": "00:04:32",
+      "text": "videos"
+    },
+    {
+      "start_time": "00:04:30",
+      "end_time": "00:04:38",
+      "text": "thank you"
+    },
+    {
+      "start_time": "00:04:32",
+      "end_time": "00:04:38",
+      "text": "[Music]"
+    }
+  ],
+  "visual_description": [
+    {
+      "start_time": "00:00:02",
+      "end_time": "00:00:06",
+      "description": "The host is visible on screen with a friendly smile, sitting in front of a background related to electronics or coding. The text 'Raspberry Pi Pico' might be visible on the screen or on a whiteboard behind the host."
+    },
+    {
+      "start_time": "00:00:04",
+      "end_time": "00:00:08",
+      "description": "The host continues to speak, with a slight gesture with their hands. The camera remains focused on the host's face and upper body."
+    },
+    {
+      "start_time": "00:00:06",
+      "end_time": "00:00:11",
+      "description": "The host's expression is enthusiastic, and they might be holding a Raspberry Pi Pico board or pointing to it on the table in front of them."
+    },
+    {
+      "start_time": "00:00:08",
+      "end_time": "00:00:13",
+      "description": "The camera zooms in on the Raspberry Pi Pico board on the table, showing its details. The host's hands might be visible, handling the board or its components."
+    },
+    {
+      "start_time": "00:00:11",
+      "end_time": "00:00:16",
+      "description": "A DHT11 temperature and humidity sensor comes into view, either held by the host or placed on the table. The host might be explaining its pins or functionality."
+    },
+    {
+      "start_time": "00:00:13",
+      "end_time": "00:00:19",
+      "description": "The host is seen gesturing with their hands, emphasizing the start of the project. The background might show a breadboard or other components related to the project."
+    },
+    {
+      "start_time": "00:00:16",
+      "end_time": "00:00:19",
+      "description": "The host's expression suggests a transition to the next part of the video. The camera might zoom out to show the host's workspace or the components laid out."
+    },
+    {
+      "start_time": "00:00:24",
+      "end_time": "00:00:30",
+      "description": "The video shows an audience applauding, indicating a pre-recorded or edited section. The camera pans across the audience or focuses on a few enthusiastic viewers."
+    },
+    {
+      "start_time": "00:00:27",
+      "end_time": "00:00:34",
+      "description": "The host is back on screen, holding or pointing to the components required for the project. The camera zooms in on the components as they are mentioned."
+    },
+    {
+      "start_time": "00:00:30",
+      "end_time": "00:00:37",
+      "description": "An LCD display is visible on the table, and the host might be explaining its role in the project. Jumper wires are also shown, either connected to the Raspberry Pi Pico or laid out on the table."
+    },
+    {
+      "start_time": "00:00:34",
+      "end_time": "00:00:40",
+      "description": "The DHT11 sensor is shown again, and the host might be demonstrating how to connect it to the Raspberry Pi Pico. The camera focuses on the connections."
+    },
+    {
+      "start_time": "00:00:37",
+      "end_time": "00:00:44",
+      "description": "The Raspberry Pi Pico and a breadboard are visible on the table. The host might be assembling the components or showing how they are connected according to the circuit diagram."
+    },
+    {
+      "start_time": "00:00:40",
+      "end_time": "00:00:44",
+      "description": "The host is seen pointing to the assembled circuit or explaining the connections. The camera zooms in on the breadboard and the components connected to it."
+    },
+    {
+      "start_time": "00:00:45",
+      "end_time": "00:01:23",
+      "description": "Background music plays, and the video shows a montage of the project's components, possibly with animations or graphics illustrating the connections and the project's functionality."
+    },
+    {
+      "start_time": "00:01:27",
+      "end_time": "00:01:30",
+      "description": "The host reappears on screen, thanking the audience. The background might show the project's setup or the components used."
+    },
+    {
+      "start_time": "00:01:31",
+      "end_time": "00:01:36",
+      "description": "The host is seen moving towards a computer or a coding environment, indicating the start of the coding section. The camera follows the host's movement."
+    },
+    {
+      "start_time": "00:01:33",
+      "end_time": "00:01:39",
+      "description": "A circuit diagram is visible on the screen, either on a computer monitor or a projected image. The host might be pointing to specific connections or components on the diagram."
+    },
+    {
+      "start_time": "00:01:36",
+      "end_time": "00:01:39",
+      "description": "The host is now in front of a computer, with the coding environment open on the screen. The camera might zoom in on the code or the host's hands as they type."
+    },
+    {
+      "start_time": "00:01:40",
+      "end_time": "00:01:45",
+      "description": "The coding environment is visible on the screen, with the host explaining the code. The camera focuses on the screen, showing the code being written or edited."
+    },
+    {
+      "start_time": "00:01:42",
+      "end_time": "00:01:49",
+      "description": "The host is typing on the computer, and the camera shows a close-up of the files required for the project. The file names and the coding environment are visible on the screen."
+    },
+    {
+      "start_time": "00:01:45",
+      "end_time": "00:01:53",
+      "description": "A person is likely sitting in front of a computer screen displaying code, possibly in a coding environment or IDE. The code on the screen includes file names like 'dsd.5 files', 'velocity API dot Pi', indicating a programming project related to a Raspberry Pi or similar device. The person's hands are likely on the keyboard."
+    },
+    {
+      "start_time": "00:01:49",
+      "end_time": "00:01:55",
+      "description": "The computer screen continues to display code, with the person scrolling or typing, revealing more file names such as 'Pico i2clc dot pi' and 'Main dot Pi'. The coding environment or text editor is still visible, showing the person's work on the project."
+    },
+    {
+      "start_time": "00:01:53",
+      "end_time": "00:01:58",
+      "description": "The focus is still on the 'Main dot Pi' file, with the person's cursor possibly hovering or clicking within this file. The coding environment remains on the screen, indicating the person is working on this specific file."
+    },
+    {
+      "start_time": "00:01:55",
+      "end_time": "00:02:02",
+      "description": "The person starts typing in the 'Main dot Pi' file, declaring a variable 'i2c'. The code is being written or edited in the coding environment on the computer screen, with the person's fingers typing on the keyboard."
+    },
+    {
+      "start_time": "00:01:58",
+      "end_time": "00:02:04",
+      "description": "The person continues typing, declaring 'i2c' and 'LCD' variables, likely related to an I2C LCD display. The code is visible on the screen, showing the declarations and possibly some related comments or other code snippets."
+    },
+    {
+      "start_time": "00:02:02",
+      "end_time": "00:02:08",
+      "description": "The screen continues to show the coding environment with the 'i2c' and 'LCD' declarations. The person might be explaining or commenting on the code, possibly using a microphone if this is a tutorial or explanatory video."
+    },
+    {
+      "start_time": "00:02:04",
+      "end_time": "00:02:10",
+      "description": "The person is still typing or has just finished typing the 'LCD' declaration. The code on the screen includes the I2C LCD display setup, indicating the project involves interacting with such a display."
+    },
+    {
+      "start_time": "00:02:08",
+      "end_time": "00:02:12",
+      "description": "The person declares a variable 't', potentially for temperature. The coding environment on the screen now includes this new variable, showing the progression of the code."
+    },
+    {
+      "start_time": "00:02:10",
+      "end_time": "00:02:15",
+      "description": "The code now includes 'sensor dot temperature' and 'H equals to sensor dot humidity', indicating the use of a sensor for temperature and humidity readings. The person's hands are on the keyboard as they work on the code."
+    },
+    {
+      "start_time": "00:02:12",
+      "end_time": "00:02:17",
+      "description": "The screen shows the declaration of 'sensor' and its properties for temperature and humidity. The coding environment is still the main focus, with the person possibly pausing to explain the code or continue typing."
+    },
+    {
+      "start_time": "00:02:15",
+      "end_time": "00:02:19",
+      "description": "The person types 'tstl11', likely specifying the sensor model or type. The code on the screen is being updated to reflect this detail, showing the person's work on integrating the sensor."
+    },
+    {
+      "start_time": "00:02:17",
+      "end_time": "00:02:21",
+      "description": "The screen displays the sensor pin declaration, specifying which pin is used for the temperature and humidity sensor. The coding environment remains the focus, with the code being edited or explained."
+    },
+    {
+      "start_time": "00:02:19",
+      "end_time": "00:02:26",
+      "description": "The person continues explaining or typing code related to the temperature and humidity sensor. The screen shows the relevant code snippets and possibly some comments or explanations."
+    },
+    {
+      "start_time": "00:02:21",
+      "end_time": "00:02:29",
+      "description": "The person is now using or explaining functions or methods related to the previously declared variables or sensors. The coding environment is still visible, showing the relevant parts of the code."
+    },
+    {
+      "start_time": "00:02:26",
+      "end_time": "00:02:32",
+      "description": "The code on the screen includes 'time job sleep one', likely a scheduling or delay function. The person's explanation or typing continues, focusing on this part of the code."
+    },
+    {
+      "start_time": "00:02:29",
+      "end_time": "00:02:35",
+      "description": "The person types or explains 'TLC dot clear', a command likely related to clearing the LCD display. The coding environment remains on the screen, showing this specific line of code."
+    },
+    {
+      "start_time": "00:02:32",
+      "end_time": "00:02:37",
+      "description": "The person references a previous video, possibly indicating a link or a related tutorial. The screen might show a brief glimpse of the previous video or a URL."
+    },
+    {
+      "start_time": "00:02:35",
+      "end_time": "00:02:39",
+      "description": "The person continues to explain or reference the previous video, suggesting viewers watch it for more context. The screen might display a video link or a related image."
+    },
+    {
+      "start_time": "00:02:37",
+      "end_time": "00:02:41",
+      "description": "The person mentions giving a link in the description, likely referring to a video link in the video description section. The screen might show a glimpse of the description or a URL."
+    },
+    {
+      "start_time": "00:02:39",
+      "end_time": "00:02:45",
+      "description": "The person concludes by reiterating that viewers can watch the referenced video for more information. The screen might show a final glimpse of the coding environment or a related image before the video ends."
+    },
+    {
+      "start_time": "00:02:41",
+      "end_time": "00:02:47",
+      "description": "A person is seen sitting in front of a computer screen displaying lines of code. The code is written in a programming language and appears to be related to a weather station project."
+    },
+    {
+      "start_time": "00:02:45",
+      "end_time": "00:02:49",
+      "description": "The person's hand is visible on a mouse, clicking on a 'run' or 'upload' button on the screen. The Raspberry Pi Pico board is visible on a breadboard next to the computer."
+    },
+    {
+      "start_time": "00:02:47",
+      "end_time": "00:02:49",
+      "description": "The camera zooms in on the Raspberry Pi Pico board connected to a breadboard with various wires and a DHT11 temperature sensor attached."
+    },
+    {
+      "start_time": "00:02:53",
+      "end_time": "00:02:58",
+      "description": "The computer screen displays the output of the uploaded code, showing the temperature and humidity readings."
+    },
+    {
+      "start_time": "00:02:56",
+      "end_time": "00:03:01",
+      "description": "The camera focuses on the computer screen displaying the temperature reading of 33.2 degrees Celsius on a serial monitor or terminal window."
+    },
+    {
+      "start_time": "00:02:58",
+      "end_time": "00:03:03",
+      "description": "The temperature reading on the screen is clearly visible, with the value '33.2' displayed prominently."
+    },
+    {
+      "start_time": "00:03:01",
+      "end_time": "00:03:07",
+      "description": "The camera pans to show the humidity reading on the screen, displaying '54.0%'."
+    },
+    {
+      "start_time": "00:03:03",
+      "end_time": "00:03:09",
+      "description": "The screen continues to display the humidity reading, with the percentage symbol clearly visible."
+    },
+    {
+      "start_time": "00:03:07",
+      "end_time": "00:03:13",
+      "description": "The person is seen nodding or making a gesture indicating satisfaction with the weather station readings on the screen."
+    },
+    {
+      "start_time": "00:03:09",
+      "end_time": "00:03:16",
+      "description": "The camera shows a close-up of the DHT11 temperature sensor connected to the Raspberry Pi Pico board."
+    },
+    {
+      "start_time": "00:03:13",
+      "end_time": "00:03:18",
+      "description": "The person is seen holding a separate thermometer or temperature-measuring device to compare the readings."
+    },
+    {
+      "start_time": "00:03:16",
+      "end_time": "00:03:20",
+      "description": "The camera shows a close-up of the thermometer or temperature-measuring device being held by the person."
+    },
+    {
+      "start_time": "00:03:18",
+      "end_time": "00:03:23",
+      "description": "The person is comparing the temperature reading on the thermometer with the reading on the computer screen."
+    },
+    {
+      "start_time": "00:03:20",
+      "end_time": "00:03:23",
+      "description": "The person's face is visible, looking at the thermometer and the computer screen with a thoughtful expression."
+    },
+    {
+      "start_time": "00:03:23",
+      "end_time": "00:03:26",
+      "description": "The video fades to a background with music playing, with no specific visual elements on screen."
+    },
+    {
+      "start_time": "00:03:27",
+      "end_time": "00:03:30",
+      "description": "The person is seen looking around, possibly checking the environment or the setup of the weather station."
+    },
+    {
+      "start_time": "00:03:33",
+      "end_time": "00:03:36",
+      "description": "The video continues to play background music, with no significant visual changes on screen."
+    },
+    {
+      "start_time": "00:03:38",
+      "end_time": "00:03:49",
+      "description": "The camera shows a shot of a digital display or a screen showing the current temperature, possibly a smartphone or a dedicated weather station display."
+    },
+    {
+      "start_time": "00:03:40",
+      "end_time": "00:03:51",
+      "description": "The background music continues to play as the video shows a general environment or setup related to the weather station project."
+    },
+    {
+      "start_time": "00:03:49",
+      "end_time": "00:03:52",
+      "description": "The person is seen speaking or narrating, possibly summarizing the project's outcome or the current temperature."
+    },
+    {
+      "start_time": "00:03:51",
+      "end_time": "00:03:54",
+      "description": "A person is holding a device with an LCD display showing some text, possibly a temperature reading. The background is not clearly visible."
+    },
+    {
+      "start_time": "00:03:52",
+      "end_time": "00:03:57",
+      "description": "The LCD display on the device is now clearly showing a temperature reading of '34 degree Celsius'. The text is displayed prominently on the screen."
+    },
+    {
+      "start_time": "00:03:54",
+      "end_time": "00:04:01",
+      "description": "The camera zooms in on another device or display showing a temperature reading of '33.1 degree'. The display is likely an LCD screen."
+    },
+    {
+      "start_time": "00:03:57",
+      "end_time": "00:04:05",
+      "description": "The person is now explaining or comparing the two temperature readings. The camera shows a mix of the devices and the person's hands."
+    },
+    {
+      "start_time": "00:04:01",
+      "end_time": "00:04:07",
+      "description": "The camera focuses on the person's hands as they gesture, possibly holding one of the devices. The background is still not clearly visible."
+    },
+    {
+      "start_time": "00:04:05",
+      "end_time": "00:04:09",
+      "description": "The person is holding up a display or screen showing '1.1 degree Celsius', highlighting the difference between the two readings."
+    },
+    {
+      "start_time": "00:04:07",
+      "end_time": "00:04:11",
+      "description": "The camera shows the person's face as they explain that there is not much difference between the measured and actual values."
+    },
+    {
+      "start_time": "00:04:09",
+      "end_time": "00:04:13",
+      "description": "The person gestures with their hands, possibly comparing the two devices or readings. The camera captures their hands and the devices."
+    },
+    {
+      "start_time": "00:04:11",
+      "end_time": "00:04:16",
+      "description": "The camera focuses on the device with the LCD display, showing the 'measured value'. The text on the screen is clearly visible."
+    },
+    {
+      "start_time": "00:04:13",
+      "end_time": "00:04:18",
+      "description": "The person is holding the device with the LCD display, showing the temperature reading. The camera captures the device and the person's hands."
+    },
+    {
+      "start_time": "00:04:16",
+      "end_time": "00:04:19",
+      "description": "The camera shows another display or reading showing '34 degree Celsius', labeled as the 'actual value'."
+    },
+    {
+      "start_time": "00:04:18",
+      "end_time": "00:04:22",
+      "description": "The camera zooms out to show both devices or displays side by side, comparing the readings."
+    },
+    {
+      "start_time": "00:04:19",
+      "end_time": "00:04:25",
+      "description": "The person's face is visible as they start to conclude the demonstration, explaining how to make a weather station."
+    },
+    {
+      "start_time": "00:04:22",
+      "end_time": "00:04:27",
+      "description": "The camera shows a Raspberry Pi Pico board on a table or workbench, with some wires or components connected to it."
+    },
+    {
+      "start_time": "00:04:25",
+      "end_time": "00:04:29",
+      "description": "The person's face is visible again as they ask viewers to like and share the video."
+    },
+    {
+      "start_time": "00:04:27",
+      "end_time": "00:04:30",
+      "description": "The camera shows a 'like' and 'subscribe' button on the screen, with a call-to-action to support the channel."
+    },
+    {
+      "start_time": "00:04:29",
+      "end_time": "00:04:32",
+      "description": "The camera continues to show the 'subscribe' button and possibly some other channel information on the screen."
+    },
+    {
+      "start_time": "00:04:30",
+      "end_time": "00:04:38",
+      "description": "The person is saying 'thank you' as the video starts to end. The camera shows their face or a closing shot."
+    },
+    {
+      "start_time": "00:04:32",
+      "end_time": "00:04:38",
+      "description": "The video ends with some background music playing, and possibly some closing credits or channel information on the screen."
+    }
+  ]
+}

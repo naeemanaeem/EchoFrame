@@ -4,12 +4,23 @@ export default function LiveVideo() {
   const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [conversationUrl, setConversationUrl] = useState('');
   const [name, setName] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLanguageChange = (e) => {
     setSelectedLanguage(e.target.value);
+    setError(''); // Clear any previous errors
   };
 
   const handleApplyLanguage = async () => {
+    if (!name.trim()) {
+      setError('Please enter your name first');
+      return;
+    }
+
+    setIsLoading(true);
+    setError('');
+    
     try {
       const response = await fetch('http://localhost:8000/start-conversation', {
         method: 'POST',
@@ -22,37 +33,28 @@ export default function LiveVideo() {
         }),
       });
       
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(data.error || `HTTP error! status: ${response.status}`);
       }
       
-      const text = await response.text();
-      if (!text) {
-        throw new Error('Empty response received');
-      }
-      
-      try {
-        const data = JSON.parse(text);
-        console.log('Raw API response:', data);
-        
-        // Check if the response contains the conversation URL directly or nested
-        if (data && data.conversation_url) {
-          console.log('Setting conversation URL:', data.conversation_url);
-          setConversationUrl(data.conversation_url);
-        } else if (data.error) {
-          throw new Error(`API Error: ${data.error}`);
-        } else {
-          console.error('Unexpected response format:', data);
-          throw new Error('No conversation URL in response');
-        }
-      } catch (parseError) {
-        console.error('Failed to parse JSON:', text);
-        throw parseError;
+      if (data.conversation_url) {
+        console.log('Setting conversation URL:', data.conversation_url);
+        setConversationUrl(data.conversation_url);
+        setError('');
+      } else if (data.error) {
+        throw new Error(data.error);
+      } else {
+        console.error('Unexpected response format:', data);
+        throw new Error('No conversation URL in response');
       }
     } catch (error) {
       console.error('Error starting conversation:', error);
-      // You might want to show an error message to the user here
+      setError(error.message || 'Failed to start conversation');
       setConversationUrl('');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -61,12 +63,16 @@ export default function LiveVideo() {
       <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <input
           type="text"
-          placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
           style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
         />
-        <select value={selectedLanguage} onChange={handleLanguageChange}>
+        <select 
+          value={selectedLanguage}
+          onChange={handleLanguageChange}
+          style={{ padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }}
+        >
           <option value="English">English</option>
           <option value="Spanish">Spanish</option>
           <option value="French">French</option>
@@ -75,21 +81,41 @@ export default function LiveVideo() {
           <option value="Hindi">Hindi</option>
         </select>
         <button 
-          className="button button-primary" 
           onClick={handleApplyLanguage}
-          disabled={!name.trim()}
+          disabled={isLoading || !name.trim()}
+          style={{ 
+            padding: '0.5rem 1rem',
+            borderRadius: '4px',
+            backgroundColor: isLoading ? '#ccc' : '#007bff',
+            color: 'white',
+            border: 'none',
+            cursor: isLoading ? 'not-allowed' : 'pointer'
+          }}
         >
-          Start Conversation
+          {isLoading ? 'Starting...' : 'Start Conversation'}
         </button>
       </div>
+
+      {error && (
+        <div style={{ 
+          color: '#dc3545', 
+          padding: '1rem', 
+          marginBottom: '1rem', 
+          backgroundColor: '#f8d7da',
+          borderRadius: '4px',
+          border: '1px solid #f5c6cb'
+        }}>
+          {error}
+        </div>
+      )}
 
       {conversationUrl && (
         <iframe
           src={conversationUrl}
           width="100%"
           height="600"
-          allow="camera; microphone; fullscreen; display-capture"
-          style={{ border: "1px solid #ccc", borderRadius: "8px" }}
+          frameBorder="0"
+          allow="camera; microphone"
           title="Tavus Conversation"
         />
       )}

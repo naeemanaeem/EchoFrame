@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function ResponseViewer() {
   const [language, setLanguage] = useState('en');
   const [englishText, setEnglishText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
   const [loadingAudio, setLoadingAudio] = useState(false);
+  const [error, setError] = useState('');
+  const audioRef = useRef(null);
+  const [audioUrl, setAudioUrl] = useState(null);
 
   // Fetch English podcast text on mount
   useEffect(() => {
@@ -49,16 +52,27 @@ export default function ResponseViewer() {
 
   const handlePlayClick = async () => {
     setLoadingAudio(true);
+    setError('');
     try {
-      const res = await fetch('http://localhost:8000/generate_speech', { method: 'POST' });
-      if (!res.ok) throw new Error('Failed to trigger speech generation');
+      const res = await fetch('http://localhost:8000/generate-speech', { method: 'POST' });
+      
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Failed to generate speech');
+      }
+
+      const contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('audio/wav')) {
+        throw new Error('Invalid response format');
+      }
 
       const blob = await res.blob();
-      const audioUrl = URL.createObjectURL(blob);
-      new Audio(audioUrl).play();
-    } catch (err) {
-      console.error(err);
-      alert('Failed to play audio');
+      const url = URL.createObjectURL(blob);
+      setAudioUrl(url);
+    } catch (error) {
+      console.error('Error generating speech:', error);
+      setError(error.message || 'Failed to generate speech. Please try again.');
+      setAudioUrl(null);
     } finally {
       setLoadingAudio(false);
     }
@@ -81,13 +95,26 @@ export default function ResponseViewer() {
           <option value="zh">Chinese</option>
         </select>
 
-        <button onClick={handlePlayClick} disabled={loadingAudio} className="play-button">
-          {loadingAudio ? 'Playing...' : 'Play'}
+        <button 
+          onClick={handlePlayClick} 
+          disabled={loadingAudio} 
+          className={`play-button ${loadingAudio ? 'loading' : ''}`}
+        >
+          {loadingAudio ? 'Generating Audio...' : 'Play'}
         </button>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        {audioUrl && (
+          <audio ref={audioRef} controls src={audioUrl} className="audio-player" />
+        )}
       </div>
 
       <div className="language-block">
-        <h4>English</h4>
         <pre className="response-content">{englishText}</pre>
       </div>
 
